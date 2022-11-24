@@ -2,20 +2,20 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
-import Home from "./pages/Home";
-import UserRepo from "./pages/UserRepo";
+import HomePage from "./pages/HomePage";
+import CommitFeedPage from "./pages/CommitFeedPage";
 import ErrorPage from "./pages/ErrorPage";
 import reportWebVitals from "./reportWebVitals";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <HomePage />,
     errorElement: <ErrorPage />,
   },
   {
     path: "/:user/:repo",
-    element: <UserRepo />,
+    element: <CommitFeedPage />,
     errorElement: <ErrorPage />,
   },
 ]);

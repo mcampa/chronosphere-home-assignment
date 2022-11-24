@@ -8,7 +8,6 @@ interface ErrorResponse {
 
 export default function ErrorPage() {
   const error = useRouteError() as ErrorResponse;
-  console.error(error);
 
   return (
     <div id="error-page">

@@ -1,5 +1,4 @@
 import { Octokit } from "@octokit/core";
-import { Endpoints } from "@octokit/types";
 
 const octokit = new Octokit({
   auth: `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`,
@@ -9,6 +8,7 @@ export type RepoCommit = {
   sha: string;
   authorName?: string;
   authorEmail?: string;
+  authorAvatar?: string;
   date?: string;
   message: string;
   url: string;
@@ -24,31 +24,28 @@ export async function getRepoCommits(
     repo,
     page,
   });
+  console.log(data[0].author);
 
-  return data.map((c) => ({
-    sha: c.sha,
-    authorName: (c.commit.author || {}).name,
-    authorEmail: (c.commit.author || {}).email,
-    date: (c.commit.author || {}).date,
-    message: c.commit.message,
-    url: c.html_url,
-  }));
+  return data.map(({ sha, author = {}, commit, html_url }) => {
+    return {
+      sha: sha,
+      authorName: (commit.author || {}).name,
+      authorEmail: (commit.author || {}).email,
+      date: (commit.author || {}).date,
+      authorAvatar: (author || {}).avatar_url,
+      message: commit.message,
+      url: html_url,
+    };
+  });
 }
 
-// ... on Repository{
-//   defaultBranchRef{
-//       target{
-//           ... on Commit{
-//               history(first:10){
-//                   edges{
-//                       node{
-//                           ... on Commit{
-//                               committedDate
-//                           }
-//                       }
-//                   }
-//               }
-//           }
-//       }
-//   }
-// }
+export type RepoDetails = Awaited<ReturnType<typeof getRepoDetails>>;
+
+export async function getRepoDetails(owner: string, repo: string) {
+  const { data } = await octokit.request("GET /repos/{owner}/{repo}", {
+    owner,
+    repo,
+  });
+
+  return data;
+}
