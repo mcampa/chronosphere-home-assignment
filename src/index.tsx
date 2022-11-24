@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./index.css";
 import HomePage from "./pages/HomePage";
 import CommitFeedPage from "./pages/CommitFeedPage";
 import ErrorPage from "./pages/ErrorPage";
 import reportWebVitals from "./reportWebVitals";
+import "./global.css";
 
 const router = createBrowserRouter([
   {
