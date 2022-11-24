@@ -34,3 +34,21 @@ export async function getRepoCommits(
     url: c.html_url,
   }));
 }
+
+// ... on Repository{
+//   defaultBranchRef{
+//       target{
+//           ... on Commit{
+//               history(first:10){
+//                   edges{
+//                       node{
+//                           ... on Commit{
+//                               committedDate
+//                           }
+//                       }
+//                   }
+//               }
+//           }
+//       }
+//   }
+// }
