@@ -1,0 +1,11 @@
+.commitList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.commitLoaderSpinner {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}

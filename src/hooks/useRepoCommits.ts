@@ -1,11 +1,12 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getRepoCommits, RepoCommit } from "../api/github";
 
 const FIRST_PAGE = 1;
 
 export default function useRepoCommits(
   user: string,
-  repo: string
+  repo: string,
+  branch: string | undefined
 ): {
   repoCommits: RepoCommit[];
   loadMoreCommits: () => void;
@@ -15,6 +16,13 @@ export default function useRepoCommits(
   const [repoCommits, setCommits] = useState<RepoCommit[]>([]);
   const [loadingCommits, setLoadingCommits] = useState<boolean>(true);
 
+  console.log(user, repo, branch, page);
+
+  useEffect(() => {
+    setCommits([]);
+    setPage(FIRST_PAGE);
+  }, [user, repo, branch]);
+
   useEffect(() => {
     loadCommits();
   }, [page]);
@@ -22,7 +30,7 @@ export default function useRepoCommits(
   const loadCommits = async () => {
     try {
       !loadingCommits && setLoadingCommits(true);
-      const newCommits = await getRepoCommits(user, repo, page);
+      const newCommits = await getRepoCommits(user, repo, branch, page);
       setCommits((repoCommits) => [...repoCommits, ...newCommits]);
     } finally {
       setLoadingCommits(false);

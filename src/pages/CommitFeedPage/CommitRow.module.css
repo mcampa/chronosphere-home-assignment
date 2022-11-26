@@ -1,20 +1,20 @@
 .root {
-  border-radius: 5px;
+  border-radius: 2px;
   border: 1px solid #aaa;
   display: grid;
-  font-size: 14px;
+  font-size: 16px;
   gap: 12px;
-  grid-template-columns: 1fr 4fr 1fr;
-  line-height: 18px;
-  margin: 6px;
+  grid-template-columns: 34px 4fr 1fr;
+  line-height: 24px;
+  margin: 0 0 12px;
   padding: 18px;
-  color: #CCC;
-  background-color: #222;
+  /* color: #CCC; */
+  background-color: #efefef;
   cursor: pointer;
 }
 
 .root:hover {
-  background-color: #111;
+  background-color: #fff;
 }
 
 .root > div {
@@ -23,20 +23,15 @@
   white-space: nowrap;
 }
 
-.authorColumn {
-  display: inline-flex;
-  gap: 6px;
-  line-height: 18px;
-}
-
-.authorColumn img {
+.avatar {
   border-radius: 50%;
-  height: 18px;
-  width: 18px;
+  height: 34px;
+  width: 34px;
 }
 
-.messageColumn {
+.commitMessage {
   font-weight: 700;
+  font-size: 16px;
 }
 
 .dateColumn {

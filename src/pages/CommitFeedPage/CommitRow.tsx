@@ -16,22 +16,28 @@ export default function CommitRow({ commit }: Props) {
   }, [commit.date]);
 
   return (
-    <a
-      className={styles.root}
-      href={commit.url}
-      referrerPolicy="no-referrer"
-      target="_blank"
-    >
-      <div className={styles.authorColumn}>
-        {commit.authorAvatar && <img src={commit.authorAvatar} alt="avatar" />}
-        <div>{commit.authorName}</div>
+    <li className={styles.root}>
+      <div>
+        {commit.authorAvatar && (
+          <img
+            className={styles.avatar}
+            src={commit.authorAvatar}
+            alt="avatar"
+          />
+        )}
       </div>
       <div className={styles.messageColumn}>
-        <a href={commit.url} referrerPolicy="no-referrer" target="_blank">
+        <div>{commit.authorName}</div>
+        <a
+          className={styles.commitMessage}
+          href={commit.url}
+          referrerPolicy="no-referrer"
+          target="_blank"
+        >
           {commit.message}
         </a>
       </div>
       <div className={styles.dateColumn}>{formattedDate}</div>
-    </a>
+    </li>
   );
 }

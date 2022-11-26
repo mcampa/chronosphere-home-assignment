@@ -1,11 +1,18 @@
+import "antd/dist/reset.css";
+import "./global.css";
+
 import React from "react";
 import ReactDOM from "react-dom";
+import { ConfigProvider, theme } from "antd";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import CommitFeedPage from "./pages/CommitFeedPage";
 import ErrorPage from "./pages/ErrorPage";
 import reportWebVitals from "./reportWebVitals";
-import "./global.css";
+
+const themeConfig = {
+  // algorithm: theme.darkAlgorithm,
+};
 
 const router = createBrowserRouter([
   {
@@ -22,7 +29,9 @@ const router = createBrowserRouter([
 
 ReactDOM.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ConfigProvider theme={themeConfig}>
+      <RouterProvider router={router} />
+    </ConfigProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

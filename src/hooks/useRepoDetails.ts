@@ -1,19 +1,40 @@
 import { useEffect, useState } from "react";
-import { getRepoDetails, RepoDetails } from "../api/github";
+import {
+  getRepository,
+  getRepoBranches,
+  Repository,
+  RepoBranches,
+} from "../api/github";
 
 export default function useRepoDetails(
   user: string,
   repo: string
-): { repoDetails?: RepoDetails; loadingDetails: boolean } {
-  const [repoDetails, setRepoDetails] = useState<RepoDetails>();
+): {
+  repository?: Repository;
+  branches?: RepoBranches;
+  loadingDetails: boolean;
+} {
+  const [repository, setRepository] = useState<Repository>();
+  const [branches, setBranches] = useState<RepoBranches>();
   const [loadingDetails, setLoadingDetails] = useState<boolean>(true);
 
   useEffect(() => {
-    !loadingDetails && setLoadingDetails(true);
-    getRepoDetails(user, repo)
-      .then((details: RepoDetails) => setRepoDetails(details))
-      .finally(() => setLoadingDetails(false));
+    loadData();
   }, []);
 
-  return { repoDetails, loadingDetails };
+  async function loadData() {
+    !loadingDetails && setLoadingDetails(true);
+    try {
+      const [repository, branches] = await Promise.all([
+        getRepository(user, repo),
+        getRepoBranches(user, repo),
+      ]);
+      setRepository(repository);
+      setBranches(branches);
+    } finally {
+      setLoadingDetails(false);
+    }
+  }
+
+  return { repository, branches, loadingDetails };
 }

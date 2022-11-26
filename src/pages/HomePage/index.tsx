@@ -1,9 +1,14 @@
 import React from "react";
+import { Layout } from "antd";
 
-export default function CommitFeedPage() {
+const { Header, Footer, Content } = Layout;
+
+export default function App() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-    </div>
+    <Layout>
+      <Header>Header</Header>
+      <Content>Content</Content>
+      <Footer>Footer</Footer>
+    </Layout>
   );
 }
