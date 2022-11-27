@@ -1,6 +1,10 @@
 {
-  "name": "chronosphere-home-assignment",
+  "name": "github-commit-explorer",
   "version": "0.1.0",
+  "author": {
+    "email": "mcampa@gmail.com",
+    "name": "Mario Campa"
+  },
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
