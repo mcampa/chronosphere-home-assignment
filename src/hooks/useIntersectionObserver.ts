@@ -9,7 +9,6 @@ export default function useIntersectionObserver(
   const handleObserver = useCallback((entries: IntersectionObserverEntry[]) => {
     const [target] = entries;
     const topPosition = document.body.getBoundingClientRect().top;
-    console.log({ topPosition });
     if (target.isIntersecting && topPosition < 0) {
       callback();
     }

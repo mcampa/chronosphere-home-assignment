@@ -15,7 +15,6 @@ export default function ScrollBackToTop() {
     const toggleVisible = () => {
       const { scrollTop } = document.documentElement;
       if (scrollTop > THRESHOLD) {
-        console.log("yes");
         setVisible(true);
       } else if (scrollTop <= THRESHOLD) {
         setVisible(false);

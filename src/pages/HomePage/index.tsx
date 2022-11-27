@@ -25,17 +25,19 @@ export default function HomePage() {
       <h1>GitHub Commit Explorer</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
         <input
-          type="text"
+          autoComplete="false"
           name="user"
           onChange={handleUserChange}
           placeholder="GitHub account"
+          type="text"
           value={user}
         />
         <input
-          type="text"
+          autoComplete="false"
           name="repo"
           onChange={handleRepoChange}
           placeholder="Repository"
+          type="text"
           value={repo}
         />
         <button disabled={!user || !repo} type="submit">

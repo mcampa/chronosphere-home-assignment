@@ -79,7 +79,7 @@ export default function CommitFeedPage() {
         ))}
       </ul>
       <div className={styles.loader} ref={loaderRef}>
-        {loadingCommits && renderSpinner}
+        {loadingCommits && renderSpinner()}
       </div>
       <ScrollBackToTop />
     </main>
