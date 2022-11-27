@@ -3,15 +3,17 @@ import { getRepoCommits, RepoCommit } from "../api/github";
 
 const FIRST_PAGE = 1;
 
+export type UseRepoCommits = {
+  repoCommits: RepoCommit[];
+  loadMoreCommits: () => void;
+  loadingCommits: boolean;
+};
+
 export function useRepoCommits(
   user: string,
   repo: string,
   branch: string | undefined
-): {
-  repoCommits: RepoCommit[];
-  loadMoreCommits: () => void;
-  loadingCommits: boolean;
-} {
+): UseRepoCommits {
   const [page, setPage] = useState<number>(FIRST_PAGE);
   const [repoCommits, setCommits] = useState<RepoCommit[]>([]);
   const [loadingCommits, setLoadingCommits] = useState<boolean>(true);
@@ -29,7 +31,7 @@ export function useRepoCommits(
     try {
       !loadingCommits && setLoadingCommits(true);
       const newCommits = await getRepoCommits(user, repo, branch, page);
-      setCommits((repoCommits) => [...repoCommits, ...newCommits]);
+      setCommits((commits) => [...commits, ...newCommits]);
     } finally {
       setLoadingCommits(false);
     }

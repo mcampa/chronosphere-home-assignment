@@ -64,7 +64,7 @@ export default function CommitFeedPage() {
 
   const renderNotFound = () => (
     <div className={styles.notFound}>
-      <h2>Uh oh!</h2>
+      <h2>Uh-oh!</h2>
       <div>Seems like this repository does not exist.</div>
       <Link to="/">Go back home</Link>
     </div>

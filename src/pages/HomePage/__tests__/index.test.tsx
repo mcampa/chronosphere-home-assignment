@@ -1,35 +1,18 @@
 import React from "react";
-import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import HomePage from "..";
-
-const mockedUsedNavigate = jest.fn();
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
-  useNavigate: () => mockedUsedNavigate,
-}));
+import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { MemoryHistory } from "history";
+import { renderPageWithRouter } from "../../../test-utils";
 
 describe("HomePage", () => {
-  let user;
-  function setup() {
-    mockedUsedNavigate.mockReset();
-    const path = "/";
-    user = userEvent.setup();
-    render(
-      <React.StrictMode>
-        <RouterProvider
-          router={createMemoryRouter([{ path, element: <HomePage /> }], {
-            initialEntries: [path],
-          })}
-        />
-      </React.StrictMode>
-    );
-  }
+  let history: MemoryHistory;
 
   beforeEach(() => {
-    setup();
+    history = renderPageWithRouter(<HomePage />, {
+      path: "/",
+      initialEntries: ["/"],
+    }).history;
   });
 
   test("renders homepage", () => {
@@ -49,6 +32,6 @@ describe("HomePage", () => {
     const button = screen.getByRole("button", { name: "Go" });
     expect(button).not.toBeDisabled();
     await userEvent.click(button);
-    expect(mockedUsedNavigate).toHaveBeenCalledWith("/foo/bar");
+    expect(history.location.pathname).toBe("/foo/bar");
   });
 });

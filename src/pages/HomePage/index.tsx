@@ -7,15 +7,15 @@ export default function HomePage() {
   const [user, setUser] = useState("");
   const [repo, setRepo] = useState("");
 
-  const handleUserChange = (event: any) => {
+  const handleUserChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUser(event.target.value);
   };
 
-  const handleRepoChange = (event: any) => {
+  const handleRepoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRepo(event?.target.value);
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     navigate(`/${user}/${repo}`);
   };

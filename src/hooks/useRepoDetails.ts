@@ -6,14 +6,13 @@ import {
   RepoBranches,
 } from "../api/github";
 
-export function useRepoDetails(
-  user: string,
-  repo: string
-): {
+export type UseRepoDetails = {
   repository?: Repository;
   branches?: RepoBranches;
   loadingDetails: boolean;
-} {
+};
+
+export function useRepoDetails(user: string, repo: string): UseRepoDetails {
   const [repository, setRepository] = useState<Repository>();
   const [branches, setBranches] = useState<RepoBranches>();
   const [loadingDetails, setLoadingDetails] = useState<boolean>(true);

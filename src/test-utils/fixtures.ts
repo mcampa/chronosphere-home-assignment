@@ -1,15 +1,26 @@
+import { RepoCommit, Repository, RepoBranches } from "../api/github";
+
 export const repository = {
   default_branch: "main",
   description: "This is the repository description",
-};
+} as Repository;
 
 export const branches = [
-  { sha: "1eb71f723d3e76beb5d7600284eaa69106831111", name: "main" },
-  { sha: "1eb71f723d3e76beb5d7600284eaa69106832222", name: "feature1" },
-  { sha: "1eb71f723d3e76beb5d7600284eaa69106833333", name: "feature2" },
-];
+  {
+    name: "main",
+    commit: { sha: "1eb71f723d3e76beb5d7600284eaa69106831111" },
+  },
+  {
+    name: "feature1",
+    commit: { sha: "1eb71f723d3e76beb5d7600284eaa69106832222" },
+  },
+  {
+    name: "feature2",
+    commit: { sha: "1eb71f723d3e76beb5d7600284eaa69106833333" },
+  },
+] as RepoBranches;
 
-export const repoCommits = [
+export const repoCommits: RepoCommit[] = [
   {
     sha: "1eb71f723d3e76beb5d7600284eaa69106831111",
     authorName: "John Doe",

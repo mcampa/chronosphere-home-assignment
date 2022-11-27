@@ -1,10 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { DownOutlined } from "@ant-design/icons";
 import { Button, Dropdown, Space } from "antd";
+import { RepoBranches } from "../../api/github";
+import { MenuInfo } from "rc-menu/lib/interface";
 
 type Props = {
-  branches?: any[];
+  branches?: RepoBranches;
   current?: string;
   disabled?: boolean;
   onClick: (branch: string) => void;
@@ -24,8 +25,8 @@ export default function BranchesDropdown(props: Props) {
 
   const menuProps = {
     items,
-    onClick: (event: any) => {
-      onClick(event.key);
+    onClick: (info: MenuInfo) => {
+      onClick(info.key);
     },
   };
 
