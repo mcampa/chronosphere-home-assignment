@@ -9,8 +9,9 @@
 
 .root h1 {
   color: #333;
-  margin-bottom: 40px;
+  font-family: 'Lobster', cursive;
   font-size: 60px;
+  margin-bottom: 40px;
 }
 
 .form {

@@ -29,12 +29,17 @@
   width: 48px;
 }
 
-.commitMessage {
+.commitAuthor {
   font-weight: 700;
+}
+
+.commitMessage {
+  font-family: 'Roboto Mono', monospace;
   font-size: 16px;
 }
 
 .dateColumn {
+  font-family: 'Roboto Mono', monospace;
   font-size: 12px;
   place-self: end;
 }

@@ -26,7 +26,7 @@ export default function HomePage() {
       <form className={styles.form} onSubmit={handleSubmit}>
         <input
           aria-label="GitHub account"
-          autoComplete="false"
+          autoComplete="off"
           name="user"
           onChange={handleUserChange}
           placeholder="GitHub account"
@@ -35,7 +35,7 @@ export default function HomePage() {
         />
         <input
           aria-label="Repository"
-          autoComplete="false"
+          autoComplete="off"
           name="repo"
           onChange={handleRepoChange}
           placeholder="Repository"

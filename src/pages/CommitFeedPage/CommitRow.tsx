@@ -32,7 +32,7 @@ export default function CommitRow({ commit }: Props) {
         )}
       </div>
       <div className={styles.messageColumn}>
-        <div>{commit.authorName}</div>
+        <div className={styles.commitAuthor}>{commit.authorName}</div>
         <a
           className={styles.commitMessage}
           href={commit.url}
