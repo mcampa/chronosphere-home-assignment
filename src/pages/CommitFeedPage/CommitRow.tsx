@@ -36,7 +36,7 @@ export default function CommitRow({ commit }: Props) {
         <a
           className={styles.commitMessage}
           href={commit.url}
-          referrerPolicy="no-referrer"
+          rel="noreferrer"
           target="_blank"
         >
           {commit.message}

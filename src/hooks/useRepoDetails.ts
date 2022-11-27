@@ -1,27 +1,23 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   getRepository,
   getRepoBranches,
   Repository,
-  RepoBranches,
+  RepoBranch,
 } from "../api/github";
 
 export type UseRepoDetails = {
   repository?: Repository;
-  branches?: RepoBranches;
+  branches?: RepoBranch[];
   loadingDetails: boolean;
 };
 
 export function useRepoDetails(user: string, repo: string): UseRepoDetails {
   const [repository, setRepository] = useState<Repository>();
-  const [branches, setBranches] = useState<RepoBranches>();
+  const [branches, setBranches] = useState<RepoBranch[]>();
   const [loadingDetails, setLoadingDetails] = useState<boolean>(true);
 
-  useEffect(() => {
-    loadData();
-  }, []);
-
-  async function loadData() {
+  const loadData = useCallback(async () => {
     !loadingDetails && setLoadingDetails(true);
     try {
       const [repository, branches] = await Promise.all([
@@ -33,7 +29,12 @@ export function useRepoDetails(user: string, repo: string): UseRepoDetails {
     } finally {
       setLoadingDetails(false);
     }
-  }
+  }, [loadingDetails, repo, user]);
+
+  useEffect(() => {
+    loadData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return { repository, branches, loadingDetails };
 }

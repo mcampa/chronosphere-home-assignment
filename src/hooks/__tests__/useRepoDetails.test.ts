@@ -3,11 +3,11 @@ import { act } from "react-dom/test-utils";
 import { renderHook } from "@testing-library/react-hooks";
 import * as fixtures from "../../test-utils/fixtures";
 import * as githubApi from "../../api/github";
-import { RepoBranches, Repository } from "../../api/github";
+import { RepoBranch, Repository } from "../../api/github";
 
 describe("useRepoDetails", () => {
   let repositoryPromise: Promise<Repository>;
-  let branchesPromise: Promise<RepoBranches>;
+  let branchesPromise: Promise<RepoBranch[]>;
   const user = "foo";
   const repo = "bar";
 

@@ -1,11 +1,11 @@
 import React from "react";
 import { DownOutlined } from "@ant-design/icons";
 import { Button, Dropdown, Space } from "antd";
-import { RepoBranches } from "../../api/github";
+import { RepoBranch } from "../../api/github";
 import { MenuInfo } from "rc-menu/lib/interface";
 
 type Props = {
-  branches?: RepoBranches;
+  branches?: RepoBranch[];
   current?: string;
   disabled?: boolean;
   onClick: (branch: string) => void;

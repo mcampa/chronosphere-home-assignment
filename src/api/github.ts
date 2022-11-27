@@ -49,7 +49,7 @@ export async function getRepository(owner: string, repo: string) {
   return data;
 }
 
-export type RepoBranches = Awaited<ReturnType<typeof getRepoBranches>>;
+export type RepoBranch = Awaited<ReturnType<typeof getRepoBranches>>[number];
 
 export async function getRepoBranches(owner: string, repo: string) {
   const { data } = await octokit.request("GET /repos/{owner}/{repo}/branches", {

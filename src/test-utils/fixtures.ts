@@ -1,4 +1,4 @@
-import { RepoCommit, Repository, RepoBranches } from "../api/github";
+import { RepoCommit, Repository, RepoBranch } from "../api/github";
 
 export const repository = {
   default_branch: "main",
@@ -18,7 +18,7 @@ export const branches = [
     name: "feature2",
     commit: { sha: "1eb71f723d3e76beb5d7600284eaa69106833333" },
   },
-] as RepoBranches;
+] as RepoBranch[];
 
 export const repoCommits: RepoCommit[] = [
   {

@@ -1,18 +1,18 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
-export function useIntersectionObserver(
-  callback: () => void,
-  dependencies: React.DependencyList
-) {
+export function useIntersectionObserver(callback: () => void) {
   const loader = useRef(null);
 
-  const handleObserver = useCallback((entries: IntersectionObserverEntry[]) => {
-    const [target] = entries;
-    const topPosition = document.body.getBoundingClientRect().top;
-    if (target.isIntersecting && topPosition < 0) {
-      callback();
-    }
-  }, dependencies);
+  const handleObserver = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      const [target] = entries;
+      const topPosition = document.body.getBoundingClientRect().top;
+      if (target.isIntersecting && topPosition < 0) {
+        callback();
+      }
+    },
+    [callback]
+  );
 
   useEffect(() => {
     const observer = new IntersectionObserver(handleObserver);
@@ -21,7 +21,7 @@ export function useIntersectionObserver(
     }
 
     return () => observer && observer.disconnect();
-  }, [loader.current]);
+  }, [handleObserver]);
 
   return loader;
 }

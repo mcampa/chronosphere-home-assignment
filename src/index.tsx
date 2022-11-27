@@ -3,7 +3,7 @@ import "./global.css";
 
 import React from "react";
 import ReactDOM from "react-dom";
-import { ConfigProvider, theme } from "antd";
+import { ConfigProvider } from "antd";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import CommitFeedPage from "./pages/CommitFeedPage";

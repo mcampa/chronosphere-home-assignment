@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getRepoCommits, RepoCommit } from "../api/github";
 
 const FIRST_PAGE = 1;
@@ -23,23 +23,27 @@ export function useRepoCommits(
     setPage(FIRST_PAGE);
   }, [user, repo, branch]);
 
+  const loadCommits = useCallback(
+    async (page) => {
+      try {
+        !loadingCommits && setLoadingCommits(true);
+        const newCommits = await getRepoCommits(user, repo, branch, page);
+        setCommits((commits) => [...commits, ...newCommits]);
+      } finally {
+        setLoadingCommits(false);
+      }
+    },
+    [branch, loadingCommits, repo, user]
+  );
+
   useEffect(() => {
-    loadCommits();
+    loadCommits(page);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
-  const loadCommits = async () => {
-    try {
-      !loadingCommits && setLoadingCommits(true);
-      const newCommits = await getRepoCommits(user, repo, branch, page);
-      setCommits((commits) => [...commits, ...newCommits]);
-    } finally {
-      setLoadingCommits(false);
-    }
-  };
-
-  const loadMoreCommits = () => {
+  const loadMoreCommits = useCallback(() => {
     setPage((page) => page + 1);
-  };
+  }, []);
 
   return {
     repoCommits,

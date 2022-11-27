@@ -22,7 +22,7 @@ export default function CommitFeedPage() {
     repo,
     branch
   );
-  const loaderRef = useIntersectionObserver(loadMoreCommits, [repoCommits]);
+  const loaderRef = useIntersectionObserver(loadMoreCommits);
 
   const handleChangeBranch = (branch: string) => {
     const isDefaultBranch = repository?.default_branch === branch;
