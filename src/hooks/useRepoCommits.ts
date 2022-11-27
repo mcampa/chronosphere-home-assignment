@@ -3,7 +3,7 @@ import { getRepoCommits, RepoCommit } from "../api/github";
 
 const FIRST_PAGE = 1;
 
-export default function useRepoCommits(
+export function useRepoCommits(
   user: string,
   repo: string,
   branch: string | undefined

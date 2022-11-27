@@ -1,8 +1,10 @@
 import React from "react";
-import useIntersectionObserver from "../../hooks/useIntersectionObserver";
-import useRepoDetails from "../../hooks/useRepoDetails";
-import useRepoCommits from "../../hooks/useRepoCommits";
-import useInputParams from "../../hooks/useInputParams";
+import {
+  useInputParams,
+  useIntersectionObserver,
+  useRepoCommits,
+  useRepoDetails,
+} from "../../hooks";
 import CommitRow from "./CommitRow";
 import BranchesDropdown from "./BranchesDropdown";
 import ScrollBackToTop from "./ScrollBackToTop";

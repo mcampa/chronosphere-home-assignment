@@ -21,7 +21,7 @@ export default function CommitRow({ commit }: Props) {
   }, [commit.date]);
 
   return (
-    <li className={styles.root}>
+    <li className={styles.root} data-testid={commit.sha}>
       <div>
         {commit.authorAvatar && (
           <img

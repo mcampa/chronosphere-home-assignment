@@ -25,6 +25,7 @@ export default function HomePage() {
       <h1>GitHub Commit Explorer</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
         <input
+          aria-label="GitHub account"
           autoComplete="false"
           name="user"
           onChange={handleUserChange}
@@ -33,6 +34,7 @@ export default function HomePage() {
           value={user}
         />
         <input
+          aria-label="Repository"
           autoComplete="false"
           name="repo"
           onChange={handleRepoChange}

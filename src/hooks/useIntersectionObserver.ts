@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef } from "react";
 
-export default function useIntersectionObserver(
+export function useIntersectionObserver(
   callback: () => void,
   dependencies: React.DependencyList
 ) {

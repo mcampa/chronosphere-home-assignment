@@ -7,7 +7,7 @@ type CommitFeedPageParams = {
   branch?: string;
 };
 
-export default function useInputParams() {
+export function useInputParams() {
   const { user = "", repo = "" } = useParams<CommitFeedPageParams>();
   const { search } = useLocation();
 

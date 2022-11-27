@@ -6,7 +6,7 @@ import {
   RepoBranches,
 } from "../api/github";
 
-export default function useRepoDetails(
+export function useRepoDetails(
   user: string,
   repo: string
 ): {

@@ -27,17 +27,15 @@ export async function getRepoCommits(
     page,
   });
 
-  return data.map(({ sha, author = {}, commit, html_url }) => {
-    return {
-      sha: sha,
-      authorName: commit.author?.name,
-      authorEmail: commit.author?.email,
-      date: commit.author?.date,
-      authorAvatar: author?.avatar_url,
-      message: commit.message,
-      url: html_url,
-    };
-  });
+  return data.map(({ sha, author = {}, commit, html_url }) => ({
+    sha: sha,
+    authorName: commit.author?.name,
+    authorEmail: commit.author?.email,
+    date: commit.author?.date,
+    authorAvatar: author?.avatar_url,
+    message: commit.message,
+    url: html_url,
+  }));
 }
 
 export type Repository = Awaited<ReturnType<typeof getRepository>>;
