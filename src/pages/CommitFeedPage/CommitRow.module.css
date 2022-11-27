@@ -1,14 +1,13 @@
 .root {
   border-radius: 2px;
-  border: 1px solid #aaa;
+  border: 3px solid #aaa;
   display: grid;
   font-size: 16px;
   gap: 12px;
-  grid-template-columns: 34px 4fr 1fr;
+  grid-template-columns: 48px 4fr 1fr;
   line-height: 24px;
   margin: 0 0 12px;
   padding: 18px;
-  /* color: #CCC; */
   background-color: #efefef;
   cursor: pointer;
 }
@@ -25,8 +24,9 @@
 
 .avatar {
   border-radius: 50%;
-  height: 34px;
-  width: 34px;
+  border: 3px solid #aaa;
+  height: 48px;
+  width: 48px;
 }
 
 .commitMessage {

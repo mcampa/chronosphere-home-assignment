@@ -16,8 +16,6 @@ export default function useRepoCommits(
   const [repoCommits, setCommits] = useState<RepoCommit[]>([]);
   const [loadingCommits, setLoadingCommits] = useState<boolean>(true);
 
-  console.log(user, repo, branch, page);
-
   useEffect(() => {
     setCommits([]);
     setPage(FIRST_PAGE);

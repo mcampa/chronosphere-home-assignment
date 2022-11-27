@@ -12,7 +12,12 @@ export default function CommitRow({ commit }: Props) {
     }
 
     const date = new Date(commit.date);
-    return `${date.toDateString()} at ${date.toLocaleTimeString()}`;
+    return (
+      <>
+        <div>{date.toDateString()}</div>
+        <div>at {date.toLocaleTimeString()}</div>
+      </>
+    );
   }, [commit.date]);
 
   return (

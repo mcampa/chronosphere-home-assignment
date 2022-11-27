@@ -1,3 +1,47 @@
+.root {
+  padding: 15px 30px 30px;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 35px auto auto auto;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "back title title ."
+    "repo repo repo branches"
+    "description description description description";
+  place-items: end start;
+}
+.headerBack {
+  grid-area: back;
+  place-self: start center;
+  font-size: 35px;
+  margin-top: 3px;
+  padding-right: 15px;
+  color: #555;
+}
+.headerTitle {
+  grid-area: title;
+  place-self: center start;
+}
+.headerRepo {
+  grid-area: repo;
+  font-size: 120%;
+}
+.headerRepo span {
+  font-weight: 700;
+  font-size: 110%;
+}
+.headerDescription {
+  padding: 10px 0 20px;
+  color: #555;
+  grid-area: description;
+}
+.headerBranches {
+  grid-area: branches;
+  place-self: end;
+}
+
 .commitList {
   list-style: none;
   margin: 0;
@@ -8,4 +52,27 @@
   display: flex;
   justify-content: center;
   padding: 20px;
+}
+
+.loader {
+  height: 20px;
+}
+
+.notFound {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: 50px;
+  gap: 18px;
+  font-size: 120%;
+}
+
+.notFound h2 {
+  font-size: 40px;
+}
+
+.notFound a {
+  text-decoration: underline;
 }

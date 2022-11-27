@@ -1,12 +1,13 @@
 import React from "react";
-import { Layout } from "antd";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 import useRepoDetails from "../../hooks/useRepoDetails";
 import useRepoCommits from "../../hooks/useRepoCommits";
 import useInputParams from "../../hooks/useInputParams";
 import CommitRow from "./CommitRow";
 import BranchesDropdown from "./BranchesDropdown";
-import { useNavigate } from "react-router-dom";
+import ScrollBackToTop from "./ScrollBackToTop";
+import { HiArrowCircleLeft } from "react-icons/hi";
+import { Link, useNavigate } from "react-router-dom";
 import { Spin } from "antd";
 import styles from "./index.module.css";
 
@@ -29,33 +30,58 @@ export default function CommitFeedPage() {
     navigate(`/${user}/${repo}${queryParams}`);
   };
 
-  return (
-    <Layout>
-      <Layout.Content>
-        <h1>Commit Feed</h1>
-        <h2>
-          Showing results for: {user}/{repo}
-        </h2>
-        <BranchesDropdown
-          branches={branches}
-          current={branch || repository?.default_branch}
-          disabled={loadingDetails}
-          onClick={handleChangeBranch}
-        />
-        {repository ? <p>{repository.description}</p> : <Spin />}
-        <ul className={styles.commitList}>
-          {repoCommits.map((commit) => (
-            <CommitRow commit={commit} key={commit.sha} />
-          ))}
-        </ul>
-        <div ref={loaderRef}>
-          {loadingCommits ? (
-            <div className={styles.commitLoaderSpinner}>
-              <Spin />
-            </div>
-          ) : null}
+  const renderHeader = () => (
+    <div className={styles.header}>
+      <Link className={styles.headerBack} to="/">
+        <HiArrowCircleLeft />
+      </Link>
+      <h1 className={styles.headerTitle}>Commit Feed</h1>
+      <div className={styles.headerRepo}>
+        Showing results for: <span>{user}</span> / <span>{repo}</span>
+      </div>
+      {branches && (
+        <div className={styles.headerBranches}>
+          <BranchesDropdown
+            branches={branches}
+            current={branch || repository?.default_branch}
+            onClick={handleChangeBranch}
+          />
         </div>
-      </Layout.Content>
-    </Layout>
+      )}
+      <div className={styles.headerDescription}>
+        {repository && <p>{repository.description}</p>}
+      </div>
+    </div>
+  );
+
+  const renderSpinner = () => (
+    <div className={styles.commitLoaderSpinner}>
+      <Spin />
+    </div>
+  );
+
+  const renderNotFound = () => (
+    <div className={styles.notFound}>
+      <h2>Uh oh!</h2>
+      <div>Seems like this repository does not exist.</div>
+      <Link to="/">Go back home</Link>
+    </div>
+  );
+
+  return (
+    <main className={styles.root}>
+      {renderHeader()}
+      {loadingDetails && renderSpinner()}
+      {!loadingDetails && !repository && renderNotFound()}
+      <ul className={styles.commitList}>
+        {repoCommits.map((commit) => (
+          <CommitRow commit={commit} key={commit.sha} />
+        ))}
+      </ul>
+      <div className={styles.loader} ref={loaderRef}>
+        {loadingCommits && renderSpinner}
+      </div>
+      <ScrollBackToTop />
+    </main>
   );
 }

@@ -8,18 +8,15 @@ export default function useIntersectionObserver(
 
   const handleObserver = useCallback((entries: IntersectionObserverEntry[]) => {
     const [target] = entries;
-    if (target.isIntersecting) {
+    const topPosition = document.body.getBoundingClientRect().top;
+    console.log({ topPosition });
+    if (target.isIntersecting && topPosition < 0) {
       callback();
     }
   }, dependencies);
 
   useEffect(() => {
-    const option = {
-      // root: null,
-      // rootMargin: "20px",
-      // threshold: 0,
-    };
-    const observer = new IntersectionObserver(handleObserver, option);
+    const observer = new IntersectionObserver(handleObserver);
     if (loader.current) {
       observer.observe(loader.current);
     }
